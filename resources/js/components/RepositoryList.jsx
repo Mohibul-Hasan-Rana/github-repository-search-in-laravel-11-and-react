@@ -12,6 +12,7 @@ import {
     CodeIcon,
 } from "lucide-react";
 import BoldText from "./BoldText";
+import { formatDate } from "../helpers/dateFormatter";
 
 function RepositoryList({
     totalCount,
@@ -20,21 +21,6 @@ function RepositoryList({
     currentTime,
     searchTerm,
 }) {
-
-    /**
-     * The `formatDate` function takes a date string as input and returns a formatted date in the "MMM
-     * DD, YYYY" format.
-     * @returns The `formatDate` function is returning a formatted date string in the format "MMM DD,
-     * YYYY" (e.g., "Jan 01, 2022") based on the input `dateString`.
-     */
-    const formatDate = (dateString) => {
-        return new Date(dateString).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-        });
-    };
-
     return (
         <div className="space-y-6 w-3/4 mx-auto">
             {/* Display the total count of repositories and the fetching time */}

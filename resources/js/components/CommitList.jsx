@@ -10,6 +10,7 @@ import {
     Link as LinkIcon,
 } from "lucide-react";
 import Pagination from "./Pagination";
+import { formatDate } from "../helpers/dateFormatter";
 
 const CommitList = ({
     selectedRepo,
@@ -32,20 +33,6 @@ const CommitList = ({
             viewCommits(selectedRepo, comitPage);
             window.scrollTo(0, 0);
         }
-    };
-
-    /**
-     * The formatDate function takes a date string as input and returns a formatted date in the 'MMM DD,
-     * YYYY' format.
-     * @returns The `formatDate` function takes a `dateString` as input, converts it to a Date object, and
-     * then returns a formatted date string in the format "MMM DD, YYYY" (e.g., "Jan 01, 2022").
-     */
-    const formatDate = (dateString) => {
-        return new Date(dateString).toLocaleDateString("en-US", {
-            year: "numeric",
-            month: "short",
-            day: "numeric",
-        });
     };
 
     if (!selectedRepo) {
