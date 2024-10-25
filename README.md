@@ -23,11 +23,7 @@ This application is a GitHub Repository Explorer built with Laravel and React, d
 
  5. Generate an application key: ```php artisan key:generate```
 
- 6. Set up the database: ```php artisan migrate```
-
- 7. Write yes if the text Would you like to create it? (yes/no) shows
-
- 8. Run those command ```php artisan dumpautoload``` and ```php artisan config:cache```
+ 6. Run those command ```php artisan dumpautoload``` and ```php artisan config:cache```
 
  ## Usage 
 
