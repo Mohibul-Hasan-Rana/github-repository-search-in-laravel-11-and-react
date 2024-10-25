@@ -36,7 +36,18 @@ const CommitList = ({
     };
 
     if (!selectedRepo) {
-        return <p>No repository selected.</p>;
+        return  (
+            <div className="space-y-4 border border-gray-300 p-4 rounded-md w-3/4 mx-auto bg-gray-500">
+                <div className="p-4 bg-white rounded-md shadow-md">
+                    <h3 className="text-xl font-semibold">
+                        No repository selected.
+                    </h3>
+                    <p className="text-gray-700">
+                        Please write something in the search field and press Enter or click on Search button.
+                    </p>
+                </div>
+            </div>
+        );
     }
 
     return (

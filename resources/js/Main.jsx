@@ -33,10 +33,11 @@ function Main() {
     const [isModalOpen, setIsModalOpen] = useState(false);
     const navigate = useNavigate();
 
-    const searchRepositories = async (page = 1) => {
-        /* This  code is a
-         responsible for fetching repository data from an API based on a
-        search query.*/
+    /* This  code is a
+    *  responsible for fetching repository data from an API based on a
+    *  search query.
+    */
+    const searchRepositories = async (page = 1) => {        
 
         if (!query) return;
         setLoading(true);
