@@ -1,4 +1,4 @@
-<p align="center">GitHub Repository Searching App</p>
+<h1 align="center">GitHub Repository Searching App<h1>
 
 
 
