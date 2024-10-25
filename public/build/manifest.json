@@ -1,0 +1,20 @@
+{
+  "resources/css/app.css": {
+    "file": "assets/app-CJE6851u.css",
+    "src": "resources/css/app.css",
+    "isEntry": true
+  },
+  "resources/js/app.jsx": {
+    "file": "assets/app-C1DPw7mq.js",
+    "name": "app",
+    "src": "resources/js/app.jsx",
+    "isEntry": true,
+    "assets": [
+      "assets/spinner--RNcDZPh.gif"
+    ]
+  },
+  "resources/js/components/images/spinner.gif": {
+    "file": "assets/spinner--RNcDZPh.gif",
+    "src": "resources/js/components/images/spinner.gif"
+  }
+}
