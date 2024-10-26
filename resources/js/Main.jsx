@@ -20,24 +20,18 @@ function Main() {
     const [loading, setLoading] = useState(false);
     const [currentTime, setCurrentTime] = useState(null);
     const [currentTimeCommit, setCurrentTimeCommit] = useState(null);
-    const [currentPage, setCurrentPage] = useState(1);
-    const [currentPageCommit, setCurrentPageCommit] = useState(1);
-    const [totalPages, setTotalPages] = useState(0);
-    const [totalPagesCommit, setTotalPagesCommit] = useState(0);
-    const [totalCount, setTotalCount] = useState(null);
-    const [totalCountCommit, setTotalCountCommit] = useState(null);
-    const [itemsPerPage, setItemsPerPage] = useState(10);
-    const [itemsPerPageCommit, setItemsPerPageCommit] = useState(10);
     const [hasSearched, setHasSearched] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [pagination, setPagination] = useState({ currentPage: 1, totalPages: 0, totalCount: 0, itemsPerPage: 10 });
+    const [commitPagination, setCommitPagination] = useState({ currentPage: 1, totalPages: 0, totalCount: 0, itemsPerPage: 10 });
     const navigate = useNavigate();
 
     /* This  code is a
     *  responsible for fetching repository data from an API based on a
     *  search query.
     */
-    const searchRepositories = async (page = 1) => {        
+    const searchRepositories = async (page = 1) => {
 
         if (!query) return;
         setLoading(true);
@@ -50,10 +44,12 @@ function Main() {
             });
 
             setRepositories(response.data.items);
-            setTotalPages(response.data.total_pages);
-            setCurrentPage(response.data.current_page);
-            setTotalCount(response.data.total_count);
-            setItemsPerPage(response.data.per_page);
+            setPagination({
+                currentPage: response.data.current_page,
+                totalPages: response.data.total_pages,
+                totalCount: response.data.total_count,
+                itemsPerPage: response.data.per_page
+            });
             const endTime = Date.now();
             const duration = endTime - startTime;
             setCurrentTime(duration);
@@ -79,10 +75,7 @@ function Main() {
      * that may occur when interacting with the GitHub API and provide specific error messages based on
      * the error type.
      * @returns The `parseError` function returns an object with a `title` and `description` based on
-     * the type of error message passed to it. If the error message includes specific phrases like
-     * "Only the first 1000 search results are available", "API rate limit exceeded", or "Network
-     * Error", it will return a corresponding object with a title and description explaining the error.
-     * If the error message does
+     * the type of error message passed to it. 
      */
     const parseError = (error) => {
         if (
@@ -124,7 +117,7 @@ function Main() {
      * and scrolls to the top of the page.
      */
     const handlePageChange = (page) => {
-        if (page >= 1 && page <= totalPages) {
+        if (page >= 1 && page <= pagination.totalPages) {
             searchRepositories(page);
             window.scrollTo(0, 0);
         }
@@ -144,10 +137,12 @@ function Main() {
                 params: { repo: repo.full_name, comitPage },
             });
             setCommits(response.data.items);
-            setTotalPagesCommit(response.data.total_pages);
-            setCurrentPageCommit(response.data.current_page);
-            setTotalCountCommit(response.data.total_count);
-            setItemsPerPageCommit(response.data.per_page);
+            setCommitPagination({
+                currentPage: response.data.current_page,
+                totalPages: response.data.total_pages,
+                totalCount: response.data.total_count,
+                itemsPerPage: response.data.per_page
+            });
             const endTime = Date.now();
             const duration = endTime - startTime;
             setCurrentTimeCommit(duration);
@@ -207,7 +202,7 @@ function Main() {
                                 </div>
                             ) : (
                                 <RepositoryList
-                                    totalCount={totalCount}
+                                    totalCount={pagination.totalCount}
                                     repositories={repositories}
                                     viewCommits={viewCommits}
                                     currentTime={currentTime}
@@ -217,10 +212,10 @@ function Main() {
 
                             {repositories.length > 0 && (
                                 <Pagination
-                                    currentPage={currentPage}
-                                    totalPages={totalPages}
-                                    totalCount={totalCount}
-                                    itemsPerPage={itemsPerPage}
+                                    currentPage={pagination.currentPage}
+                                    totalPages={pagination.totalPages}
+                                    totalCount={pagination.totalCount}
+                                    itemsPerPage={pagination.itemsPerPage}
                                     handlePageChange={handlePageChange}
                                 />
                             )}
@@ -235,11 +230,11 @@ function Main() {
                         <CommitList
                             selectedRepo={selectedRepo}
                             commits={commits}
-                            totalCountCommit={totalCountCommit}
                             currentTimeCommit={currentTimeCommit}
-                            totalPages={totalPagesCommit}
-                            itemsPerPage={itemsPerPageCommit}
-                            currentPage={currentPageCommit}
+                            totalCountCommit={commitPagination.totalCount}
+                            currentPage={commitPagination.currentPage}
+                            totalPages={commitPagination.totalPages}
+                            itemsPerPage={commitPagination.itemsPerPage}
                             viewCommits={viewCommits}
                         />
                     }
