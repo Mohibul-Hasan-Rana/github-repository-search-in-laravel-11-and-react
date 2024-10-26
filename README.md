@@ -10,7 +10,7 @@ This application is a GitHub Repository Explorer built with Laravel and React, d
 
 ## Prerequisites
 - PHP Version >= 8.3
-- Uncomment extension=pdo_sqlite and extension=sqlite3 lines in php.ini file if not uncommented.
+
 
 ## Installation
  1. Clone the repository from: ``` git clone https://github.com/Mohibul-Hasan-Rana/github-repository-search-in-laravel-11-and-react.git```
