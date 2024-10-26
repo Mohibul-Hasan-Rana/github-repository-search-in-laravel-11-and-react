@@ -13,9 +13,9 @@ This application is a GitHub Repository Explorer built with Laravel and React, d
 - Uncomment extension=pdo_sqlite and extension=sqlite3 lines in php.ini file if not uncommented.
 
 ## Installation
- 1. Clone the repository from: ``` git clone https://github.com/Mohibul-Hasan-Rana/github-repository-search-in-laravel-11-and-react.git <your-repo-name>```
+ 1. Clone the repository from: ``` git clone https://github.com/Mohibul-Hasan-Rana/github-repository-search-in-laravel-11-and-react.git```
 
- 2. Navigate to the project directory: ```cd your-repo-name```
+ 2. Navigate to the project directory: ```cd github-repository-search-in-laravel-11-and-react```
 
  3. Install dependencies: ```composer install```
 
@@ -23,7 +23,7 @@ This application is a GitHub Repository Explorer built with Laravel and React, d
 
  5. Generate an application key: ```php artisan key:generate```
 
- 6. Run those command ```php artisan dumpautoload``` and ```php artisan config:cache```
+ 6. Run those command ```composer dumpautoload``` and ```php artisan config:cache```
 
  ## Usage 
 
